@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Zero UI",
+    "slug": "zero-ui",
+    "sdkVersion": "25.0.0",
+    "version": "0.1.0",
+    "ios": {
+      "bundleIdentifier": "com.zeromolecule.zero.ui"
+    },
+    "android": {
+      "package": "com.zeromolecule.zero.ui"
+    }
+  }
+}
