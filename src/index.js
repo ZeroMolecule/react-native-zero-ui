@@ -4,5 +4,8 @@ module.exports = {
   },
   get View() {
     return require('./components/View/View').default;
+  },
+  get Input() {
+    return require('./components/Input/Input').default;
   }
 };
