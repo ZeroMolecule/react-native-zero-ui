@@ -7,5 +7,8 @@ module.exports = {
   },
   get Input() {
     return require('./components/Input/Input').default;
+  },
+  get Button() {
+    return require('./components/Button/Button').default;
   }
 };

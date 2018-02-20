@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Input, Text, View } from 'react-native-zero-ui';
+import { Button, Input, Text, View } from 'react-native-zero-ui';
 
 export default class App extends React.Component {
   render() {
@@ -10,6 +10,7 @@ export default class App extends React.Component {
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
         <Input placeholder="popuši ga"/>
+        <Button title="E ne budem!"/>
       </View>
     );
   }
