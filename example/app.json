@@ -10,5 +10,7 @@
     "android": {
       "package": "com.zeromolecule.zero.ui"
     }
-  }
+  },
+  "name": "ZeroUI",
+  "displayName": "Zero UI"
 }
