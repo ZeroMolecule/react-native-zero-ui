@@ -1,16 +1,15 @@
 {
   "expo": {
-    "name": "Zero UI",
-    "slug": "zero-ui",
+    "name": "Zero UI Demo",
+    "description": "Zero Molecule UI kit for React Native apps",
+    "slug": "zero-ui-demo",
     "sdkVersion": "25.0.0",
-    "version": "0.1.0",
-    "ios": {
-      "bundleIdentifier": "com.zeromolecule.zero.ui"
-    },
-    "android": {
-      "package": "com.zeromolecule.zero.ui"
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#2196f3",
+    "packagerOpts": {
+      "config": "./rn-cli.config.js",
+      "projectRoots": ""
     }
-  },
-  "name": "ZeroUI",
-  "displayName": "Zero UI"
+  }
 }

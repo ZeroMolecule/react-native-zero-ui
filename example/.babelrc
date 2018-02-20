@@ -1,6 +1,6 @@
 {
   "presets": [
-    "babel-preset-react-native-stage-0/decorator-support"
+    "babel-preset-expo"
   ],
   "env": {
     "development": {
@@ -8,5 +8,15 @@
         "transform-react-jsx-source"
       ]
     }
-  }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "name-of-my-library": ".."
+        }
+      }
+    ]
+  ]
 }

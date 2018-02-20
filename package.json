@@ -2,7 +2,7 @@
   "name": "react-native-zero-ui",
   "version": "0.1.0",
   "description": "Zero Molecule UI kit for React Native",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,9 +14,22 @@
   ],
   "author": "Zero Molecule",
   "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  },
   "peerDependencies": {
-    "react": "^16.2.0",
-    "react-native": ">=0.40.0",
-    "@shoutem/theme": "^0.11.1"
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.2.2",
+    "babel-jest": "22.4.0",
+    "babel-preset-react-native": "4.0.0",
+    "eslint": "4.18.0",
+    "eslint-plugin-react": "7.7.0",
+    "jest": "22.4.0",
+    "react": "16.2.0",
+    "react-native": "0.53.3",
+    "react-test-renderer": "16.2.0"
   }
 }
