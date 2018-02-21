@@ -6,9 +6,8 @@ import styles from './Input.style';
 class ZeroInput extends TextInput {
 
 }
-
 ZeroInput.defaultProps = {
-  ...ZeroInput.defaultProps,
+  ...TextInput.defaultProps,
   autoCorrect: false,
   underlineColorAndroid: 'transparent',
 };

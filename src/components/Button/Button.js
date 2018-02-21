@@ -6,7 +6,6 @@ import styles from './Button.style';
 const ZeroButton = ({ style, ...props }) => (
   <Button
     {...style}
-    containerViewStyle={style.containerViewStyle}
     {...props}
   />
 );
