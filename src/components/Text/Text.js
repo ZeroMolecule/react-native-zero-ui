@@ -5,6 +5,6 @@ import styles from './Text.style';
 
 const ZeroText = props => <Text {...props}/>;
 
-const StyledText = connectStyle('zero.ui.Text', styles);
+const StyledText = connectStyle('zero.ui.Text', styles)(ZeroText);
 
 export default StyledText;

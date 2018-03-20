@@ -6,7 +6,7 @@ import styles from './Input.style';
 const ZeroInput = props => (
   <TextInput
     autoCorrect={false}
-    underlineColorAndroid: 'transparent'
+    underlineColorAndroid="transparent"
     {...props}
   />
 );
