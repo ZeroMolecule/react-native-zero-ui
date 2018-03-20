@@ -3,13 +3,14 @@ import { TextInput } from 'react-native';
 import { connectStyle } from '@shoutem/theme';
 import styles from './Input.style';
 
-class ZeroInput extends TextInput {
+const ZeroInput = props => (
+  <TextInput
+    autoCorrect={false}
+    underlineColorAndroid: 'transparent'
+    {...props}
+  />
+);
 
-}
-ZeroInput.defaultProps = {
-  ...TextInput.defaultProps,
-  autoCorrect: false,
-  underlineColorAndroid: 'transparent',
-};
+const StyledInput = connectStyle('zero.ui.Input', styles)(ZeroInput);
 
-export default connectStyle('zero.ui.Input', styles)(ZeroInput);
+export default StyledInput;
