@@ -6,9 +6,10 @@ import styles from './Button.style';
 const ZeroButton = ({ style, ...props }) => (
   <Button
     {...style}
-    containerViewStyle={style.containerViewStyle}
     {...props}
   />
 );
 
-export default connectStyle('zero.ui.Button', styles)(ZeroButton);
+const StyledButton = connectStyle('zero.ui.Button', styles)(ZeroButton);
+
+export default StyledButton;
