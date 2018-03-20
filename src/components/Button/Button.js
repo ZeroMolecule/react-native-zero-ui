@@ -10,4 +10,6 @@ const ZeroButton = ({ style, ...props }) => (
   />
 );
 
-export default connectStyle('zero.ui.Button', styles)(ZeroButton);
+const StyledButton = connectStyle('zero.ui.Button', styles)(ZeroButton);
+
+export default StyledButton;
