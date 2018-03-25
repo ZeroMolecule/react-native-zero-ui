@@ -3,7 +3,16 @@ import { Text } from 'react-native';
 import { connectStyle } from '@shoutem/theme';
 import styles from './Text.style';
 
-const ZeroText = props => <Text {...props}/>;
+const ZeroText = ({ style = {}, ...props }) => {
+  const { defaultProps, ...restStyle } = style;
+  return (
+    <Text
+      {...defaultProps}
+      {...props}
+      style={restStyle}
+    />
+  );
+};
 
 const StyledText = connectStyle('zero.ui.Text', styles)(ZeroText);
 
