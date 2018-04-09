@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ActivityIndicator,
   Platform,
-  Text as NativeText,
+  StyleSheet,
   TouchableHighlight,
   TouchableNativeFeedback,
   View,
@@ -10,12 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import styles, { stylesObject } from './ButtonCore.style';
 import Text from '../../Text/Text';
-import ViewPropTypes from '../../../config/ViewPropTypes';
 import colors from '../../../styling/colors';
-
-const log = () => {
-  console.log('please attach method to this component'); // eslint-disable-line no-console
-};
 
 const Button = (props) => {
   const {
@@ -26,7 +21,6 @@ const Button = (props) => {
     buttonStyle,
     borderRadius,
     title,
-    onPress,
     icon,
     secondary,
     secondary2,
@@ -97,15 +91,6 @@ const Button = (props) => {
       />
     );
   }
-  if (!Component && Platform.OS === 'ios') {
-    Component = TouchableHighlight;
-  }
-  if (!Component && Platform.OS === 'android') {
-    Component = TouchableNativeFeedback;
-  }
-  if (!Component) {
-    Component = TouchableHighlight;
-  }
 
   if (Platform.OS === 'android' && (borderRadius && !attributes.background)) {
     if (Platform.Version >= 21) {
@@ -147,7 +132,6 @@ const Button = (props) => {
       <Component
         {...attributes}
         underlayColor={underlayColor || 'transparent'}
-        onPress={onPress || log}
         disabled={disabled || false}
       >
         <View
@@ -185,7 +169,7 @@ const Button = (props) => {
           {(icon && !iconRight) || leftIconElement ? leftIconElement : null}
           {loading && !loadingRight && loadingElement}
           <Text
-            style={[
+            style={StyleSheet.flatten([
               styles.text,
               color && { color },
               !large && styles.smallFont,
@@ -194,7 +178,7 @@ const Button = (props) => {
               fontWeight && { fontWeight },
               fontFamily && { fontFamily },
               disabled && disabledTextStyle,
-            ]}
+            ])}
             {...textOptions}
             allowFontScaling={allowFontScaling}
           >
@@ -209,43 +193,51 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
-  buttonStyle: ViewPropTypes.style,
-  title: PropTypes.string,
-  onPress: PropTypes.any,
+  Component: PropTypes.any,
+  activityIndicatorStyle: PropTypes.object,
+  allowFontScaling: PropTypes.bool,
+  background: PropTypes.any,
+  backgroundColor: PropTypes.string,
+  borderRadius: PropTypes.number,
+  buttonStyle: PropTypes.object,
+  color: PropTypes.string,
+  containerViewStyle: PropTypes.object,
+  disabled: PropTypes.bool,
+  disabledStyle: PropTypes.object,
+  disabledTextStyle: PropTypes.object,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.any,
+  fontWeight: PropTypes.string,
   icon: PropTypes.object,
-  leftIcon: PropTypes.object,
-  rightIcon: PropTypes.object,
   iconRight: PropTypes.object,
-  iconComponent: PropTypes.any,
+  large: PropTypes.bool,
+  leftIcon: PropTypes.object,
+  loading: PropTypes.bool,
+  loadingRight: PropTypes.bool,
+  onPress: PropTypes.any,
+  outline: PropTypes.bool,
+  primary1: PropTypes.bool,
+  primary2: PropTypes.bool,
+  raised: PropTypes.bool,
+  rightIcon: PropTypes.object,
+  rounded: PropTypes.bool,
   secondary: PropTypes.bool,
   secondary2: PropTypes.bool,
   secondary3: PropTypes.bool,
-  primary1: PropTypes.bool,
-  primary2: PropTypes.bool,
-  backgroundColor: PropTypes.string,
-  color: PropTypes.string,
-  fontSize: PropTypes.any,
-  underlayColor: PropTypes.string,
-  raised: PropTypes.bool,
-  textStyle: NativeText.propTypes.style,
-  disabled: PropTypes.bool,
-  loading: PropTypes.bool,
-  activityIndicatorStyle: ViewPropTypes.style,
-  loadingRight: PropTypes.bool,
-  Component: PropTypes.any,
-  borderRadius: PropTypes.number,
-  large: PropTypes.bool,
-  fontWeight: PropTypes.string,
-  disabledStyle: ViewPropTypes.style,
-  disabledTextStyle: NativeText.propTypes.style,
-  fontFamily: PropTypes.string,
-  containerViewStyle: ViewPropTypes.style,
-  rounded: PropTypes.bool,
-  outline: PropTypes.bool,
-  transparent: PropTypes.bool,
-  allowFontScaling: PropTypes.bool,
-  textNumberOfLines: PropTypes.number,
   textEllipsizeMode: PropTypes.string,
+  textNumberOfLines: PropTypes.number,
+  textStyle: PropTypes.object,
+  title: PropTypes.string,
+  transparent: PropTypes.bool,
+  underlayColor: PropTypes.string
 };
 
 export default Button;
+
+Button.defaultProps = {
+  Component: Platform.select({
+    ios: TouchableHighlight,
+    android: TouchableNativeFeedback,
+  }),
+  onPress: () => console.warn('onPress not implemented'),
+};

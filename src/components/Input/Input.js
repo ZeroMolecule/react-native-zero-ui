@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
 import { connectStyle } from '@shoutem/theme';
 import styles from './Input.style';
-import ViewPropTypes from '../../config/ViewPropTypes';
 
 const ZeroInput = ({ style = {}, ...props }) => {
   const { defaultProps, ...restStyle } = style;
@@ -17,7 +17,7 @@ const ZeroInput = ({ style = {}, ...props }) => {
   );
 };
 ZeroInput.propTypes = {
-  style: ViewPropTypes.style,
+  style: PropTypes.object,
 };
 ZeroInput.defaultProps = {
   style: {},

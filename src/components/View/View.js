@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connectStyle } from '@shoutem/theme/index';
 import { View } from 'react-native';
 import styles from './View.style';
-import ViewPropTypes from '../../config/ViewPropTypes';
 
 const ZeroView = ({ style, ...props }) => {
   const { defaultProps, ...restStyle } = style;
@@ -15,7 +15,7 @@ const ZeroView = ({ style, ...props }) => {
   );
 };
 ZeroView.propTypes = {
-  style: ViewPropTypes.style,
+  style: PropTypes.object,
 };
 ZeroView.defaultProps = {
   style: {},
