@@ -14,6 +14,7 @@ import colors from '../../../styling/colors';
 
 const Button = (props) => {
   const {
+    Component,
     disabled,
     loading,
     loadingRight,
@@ -22,11 +23,6 @@ const Button = (props) => {
     borderRadius,
     title,
     icon,
-    secondary,
-    secondary2,
-    secondary3,
-    primary1,
-    primary2,
     backgroundColor,
     color,
     fontSize,
@@ -48,7 +44,7 @@ const Button = (props) => {
     allowFontScaling,
     ...attributes
   } = props;
-  let { Component, rightIcon, leftIcon } = props;
+  let { rightIcon, leftIcon } = props;
 
   let leftIconElement;
   if (!leftIcon && icon) {
@@ -131,18 +127,13 @@ const Button = (props) => {
     >
       <Component
         {...attributes}
-        underlayColor={underlayColor || 'transparent'}
-        disabled={disabled || false}
+        underlayColor={underlayColor}
+        disabled={disabled}
       >
         <View
           pointerEvents="box-only"
           style={[
             styles.button,
-            secondary && { backgroundColor: colors.secondary },
-            secondary2 && { backgroundColor: colors.secondary2 },
-            secondary3 && { backgroundColor: colors.secondary3 },
-            primary1 && { backgroundColor: colors.primary1 },
-            primary2 && { backgroundColor: colors.primary2 },
             backgroundColor && { backgroundColor },
             borderRadius && { borderRadius },
             !large && styles.small,
@@ -216,20 +207,15 @@ Button.propTypes = {
   loadingRight: PropTypes.bool,
   onPress: PropTypes.any,
   outline: PropTypes.bool,
-  primary1: PropTypes.bool,
-  primary2: PropTypes.bool,
   raised: PropTypes.bool,
   rightIcon: PropTypes.object,
   rounded: PropTypes.bool,
-  secondary: PropTypes.bool,
-  secondary2: PropTypes.bool,
-  secondary3: PropTypes.bool,
   textEllipsizeMode: PropTypes.string,
   textNumberOfLines: PropTypes.number,
   textStyle: PropTypes.object,
   title: PropTypes.string,
   transparent: PropTypes.bool,
-  underlayColor: PropTypes.string
+  underlayColor: PropTypes.string,
 };
 
 export default Button;
@@ -239,5 +225,35 @@ Button.defaultProps = {
     ios: TouchableHighlight,
     android: TouchableNativeFeedback,
   }),
+  disabled: false,
+  loading: false,
+  loadingRight: false,
+  activityIndicatorStyle: undefined,
+  allowFontScaling: false,
+  background: undefined,
+  backgroundColor: undefined,
+  borderRadius: 0,
+  buttonStyle: undefined,
+  color: stylesObject.text.color,
+  containerViewStyle: undefined,
+  disabledStyle: undefined,
+  disabledTextStyle: undefined,
+  fontFamily: undefined,
+  fontSize: stylesObject.text.fontSize,
+  fontWeight: undefined,
+  icon: undefined,
+  iconRight: undefined,
+  large: false,
+  leftIcon: undefined,
+  outline: false,
+  raised: false,
+  rightIcon: undefined,
+  rounded: false,
+  textEllipsizeMode: undefined,
+  textNumberOfLines: undefined,
+  textStyle: undefined,
+  title: undefined,
+  transparent: false,
+  underlayColor: 'transparent',
   onPress: () => console.warn('onPress not implemented'),
 };
