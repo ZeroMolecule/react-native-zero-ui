@@ -5,14 +5,17 @@ title: Button
 
 Component highly inspired by [`Button `](https://react-native-training.github.io/react-native-elements/docs/0.19.0/button.html) component from [`react-native-elements`](https://react-native-training.github.io/react-native-elements/). However, it has no external dependencies, so there is no out-of-the-box support for `Icon` component from [`react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons)
 
+
+
 ### Usage
 
 
-```js
-import { Button } from 'react-native-elements';
+```jsx
+import { Button } from 'react-native-zero-ui';
 
 <Button
   title="My button"
+  styleName="round"
 />
 
 <Button
@@ -34,11 +37,96 @@ import { Button } from 'react-native-elements';
 
 ---
 
-### Props
 
-**All properties are optional**
 
-> Also receives all [TouchableNativeFeedback](http://facebook.github.io/react-native/docs/touchablenativefeedback.html#props) (Android) or [TouchableOpacity](http://facebook.github.io/react-native/docs/touchableopacity.html#props) (iOS) props
+
+
+## Predefined styles
+
+Some styles are predefined within the plugin. You can add your in your own theme file. Only thing you need is to extend it through `zero.ui.Button` key
+
+
+
+### Usage
+
+```js
+const theme = {
+    'zero.ui.Button': {
+        // my global custom styling and props for Button
+        '.myStyle': {
+            // custom styling for myStyle class
+        },
+        defaultProps: {
+            // default props for Button component
+        }
+    }
+}
+```
+
+```jsx
+<Button styleName="myStyle" />
+```
+
+
+
+### List of styles
+
+- [`flex`](#.flex)
+- [`fill`](#.fill)
+- [`round`](#.round)
+
+
+
+#### `flex`
+
+Makes button fill parent flexbox
+
+```javascript
+containerViewStyle: {
+  flex: 1,
+}
+```
+
+
+
+#### `fill`
+
+Makes button as wide as the container allows it to be
+
+```javascript
+containerViewStyle: {
+  width: '100%',
+}
+```
+
+
+
+#### `round`
+
+Adds borderRadius to button. It also adds borderRadius to all selection modes (highlight, ripple), as well as shadows
+
+```javascript
+rounded: true,
+borderRadius: 100,
+containerViewStyle: {
+  borderRadius: 100,
+},
+style: {
+  borderRadius: 100,
+}
+```
+
+
+
+
+
+## Props
+
+> **All properties are optional**
+>
+> Also, receives all [TouchableNativeFeedback](http://facebook.github.io/react-native/docs/touchablenativefeedback.html#props) (Android) or [TouchableOpacity](http://facebook.github.io/react-native/docs/touchableopacity.html#props) (iOS) props
+
+
 
 
 * [`Component`](#component)
@@ -70,7 +158,7 @@ import { Button } from 'react-native-elements';
 * [`transparent`](#transparent)
 * [`underlayColor`](#underlayColor)
 
----
+
 
 # Reference
 
@@ -118,7 +206,7 @@ prop used for `TouchableNativeFeedback`
 
 color used for buttons background. 
 
-**It is recommended to use this prop for configuring background color instead of doing it through styles**
+> **It is recommended to use this prop for configuring background color instead of doing it through styles**
 
 |      Type      | Default |
 | :------------: | :-----: |
@@ -130,7 +218,7 @@ color used for buttons background.
 
 radius used for button border
 
-**It is recommended to use this prop instead going through usual styling, because this way shadow and highlight / ripple will be styled as well**
+> **It is recommended to use this prop instead going through usual styling, because this way shadow and highlight / ripple will be styled as well**
 
 |      Type      | Default |
 | :------------: | :-----: |
@@ -152,7 +240,7 @@ additional styling for button component
 
 color used for buttons text and loading indicator. 
 
-**It is recommended to use this prop for configuring color instead of doing it through styles**
+> **It is recommended to use this prop for configuring color instead of doing it through styles**
 
 |      Type      | Default |
 | :------------: | :-----: |
@@ -194,7 +282,7 @@ additional styling for button text in disabled state
 
 font family used for button text
 
-**It is recommended to use this prop for configuring font family instead of doing it through styles**
+> **It is recommended to use this prop for configuring font family instead of doing it through styles**
 
 |      Type      | Default |
 | :------------: | :-----: |
@@ -206,7 +294,7 @@ font family used for button text
 
 font size used for button text
 
-**It is recommended to use this prop for configuring font family instead of doing it through styles**
+> **It is recommended to use this prop for configuring font family instead of doing it through styles**
 
 |      Type      | Default |
 | :------------: | :-----: |
@@ -218,7 +306,7 @@ font size used for button text
 
 font weight used for button text
 
-**It is recommended to use this prop for configuring font weight instead of doing it through styles**
+> **It is recommended to use this prop for configuring font weight instead of doing it through styles**
 
 |      Type      | Default |
 | :------------: | :-----: |
@@ -290,18 +378,21 @@ flag that determines if button has any outline
 
 ---
 
+
+
 ### `raised`
 
 flag that determines if button is displayed as raised (has shadow / elevation)
 
-**It is recommended to use this prop for displaying shadow instead of 
-doing it through styles. However, if you need any further customization of the shadow, you need to do it manually**
+> **It is recommended to use this prop for displaying shadow instead of doing it through styles. However, if you need any further customization of the shadow, you need to do it manually**
 
 |      Type      | Default |
 | :------------: | :-----: |
 | boolean |  `false`   |
 
 ---
+
+
 
 ### `title`
 
@@ -313,6 +404,8 @@ button title (optional)
 
 ---
 
+
+
 ### `transparent`
 
 flag that removes background from button
@@ -323,6 +416,8 @@ flag that removes background from button
 
 ---
 
+
+
 ### `underlayColor`
 
 same prop from `TouchableHighlight` with overriden default value
@@ -332,3 +427,4 @@ same prop from `TouchableHighlight` with overriden default value
 | color |  `transparent`  |
 
 ---
+
