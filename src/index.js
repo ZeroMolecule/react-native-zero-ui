@@ -5,10 +5,16 @@ module.exports = {
   get View() {
     return require('./components/View/View').default;
   },
+  /**
+   * @deprecated use `TextInput` instead
+   */
   get Input() {
-    return require('./components/Input/Input').default;
+    return require('./components/TextInput/TextInput').default;
+  },
+  get TextInput() {
+    return require('./components/TextInput/TextInput').default;
   },
   get Button() {
     return require('./components/Button/Button').default;
-  }
+  },
 };
