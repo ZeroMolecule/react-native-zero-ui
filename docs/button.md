@@ -56,9 +56,9 @@ const theme = {
 
 ### List of styles
 
-- [`flex`](#.flex)
-- [`fill`](#.fill)
-- [`round`](#.round)
+- [`flex`](#flex)
+- [`fill`](#fill)
+- [`round`](#round)
 
 
 
