@@ -36,7 +36,6 @@ export default class App extends React.Component {
           </Text>
           <View styleName="fill-width">
             <TextInput
-              styleName="fill-width"
               style={styles.spacingVerticalBig}
               placeholder="Write something here"
             />
