@@ -10,7 +10,7 @@ Component highly inspired by [`Button `](https://react-native-training.github.io
 ### Usage
 
 
-```jsx
+```js
 import { Button } from 'react-native-zero-ui';
 
 <Button
