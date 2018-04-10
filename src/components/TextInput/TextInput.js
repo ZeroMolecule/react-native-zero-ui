@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
 import { connectStyle } from '@shoutem/theme';
-import styles from './Input.style';
+import styles from './TextInput.style';
 
 const ZeroInput = ({ style = {}, ...props }) => {
   const { defaultProps, ...restStyle } = style;
@@ -23,5 +23,5 @@ ZeroInput.defaultProps = {
   style: {},
 };
 
-const StyledInput = connectStyle('zero.ui.Input', styles)(ZeroInput);
+const StyledInput = connectStyle('zero.ui.TextInput', styles)(ZeroInput);
 export default StyledInput;

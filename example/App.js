@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Button, Input, View } from 'react-native-zero-ui';
+import { Button, TextInput, View } from 'react-native-zero-ui';
 import StyleProvider from '@shoutem/theme/src/StyleProvider';
 
 const style = {
@@ -34,11 +34,13 @@ export default class App extends React.Component {
           <Text styleName="center" style={styles.spacingVertical}>Shake your phone to open the
             developer menu.
           </Text>
-          <Input
-            styleName="center"
-            style={styles.spacingVerticalBig}
-            placeholder="Write something here"
-          />
+          <View styleName="fill-width">
+            <TextInput
+              styleName="fill-width"
+              style={styles.spacingVerticalBig}
+              placeholder="Write something here"
+            />
+          </View>
           <Button
             styleName="round fill"
             title="E ne budem!"
