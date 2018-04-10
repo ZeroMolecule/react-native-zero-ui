@@ -32,17 +32,17 @@
 
 ### Usage
 
-Start using the components or try it on Snack [here](https://snack.expo.io/rJu6gJfBZ).
+Start using the components
 
 ```js
-import { Button } from 'react-native-elements';
+import { Button } from 'react-native-zero-ui';
 
 <Button
   raised
   icon={{name: 'home', size: 32}}
   buttonStyle={{backgroundColor: 'red', borderRadius: 10}}
   textStyle={{textAlign: 'center'}}
-  title={`Welcome to\nReact Native Elements`}
+  title={`Welcome to\nReact Native Zero UI`}
 />
 ```
 
