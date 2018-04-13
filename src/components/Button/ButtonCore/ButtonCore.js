@@ -5,8 +5,8 @@ import {
   StyleSheet,
   TouchableHighlight,
   TouchableNativeFeedback,
-  View,
 } from 'react-native';
+import { View } from 'react-native-animatable';
 import PropTypes from 'prop-types';
 import styles, { stylesObject } from './ButtonCore.style';
 import Text from '../../Text/Text';
@@ -42,6 +42,8 @@ const Button = (props) => {
     title,
     transparent,
     underlayColor,
+    animation,
+    duration,
     ...attributes
   } = props;
   let { rightIcon, leftIcon } = props;
@@ -124,6 +126,8 @@ const Button = (props) => {
         containerViewStyle,
         borderRadius && { borderRadius },
       ]}
+      animation={animation}
+      duration={duration}
     >
       <Component
         {...attributes}
@@ -218,8 +222,6 @@ Button.propTypes = {
   underlayColor: PropTypes.string,
 };
 
-export default Button;
-
 Button.defaultProps = {
   Component: Platform.select({
     ios: TouchableHighlight,
@@ -257,3 +259,5 @@ Button.defaultProps = {
   underlayColor: 'transparent',
   onPress: () => console.warn('onPress not implemented'),
 };
+
+export default Button;

@@ -1,19 +1,23 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connectStyle } from '@shoutem/theme/index';
-import { View } from 'react-native';
+import { View } from 'react-native-animatable';
 import styles from './View.style';
 
-const ZeroView = ({ style, ...props }) => {
-  const { defaultProps, ...restStyle } = style;
-  return (
-    <View
-      {...defaultProps}
-      {...props}
-      style={restStyle}
-    />
-  );
-};
+class ZeroView extends PureComponent {
+  render() {
+    const { style, ...props } = this.props;
+    const { defaultProps, ...restStyle } = style;
+    return (
+      <View
+        {...defaultProps}
+        {...props}
+        style={restStyle}
+      />
+    );
+  }
+}
+
 ZeroView.propTypes = {
   style: PropTypes.object,
 };

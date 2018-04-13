@@ -1,19 +1,24 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { Text } from 'react-native';
+import React, { PureComponent } from 'react';
+import { Text } from 'react-native-animatable';
 import { connectStyle } from '@shoutem/theme';
 import styles from './Text.style';
 
-const ZeroText = ({ style, ...props }) => {
-  const { defaultProps, ...restStyle } = style;
-  return (
-    <Text
-      {...defaultProps}
-      {...props}
-      style={restStyle}
-    />
-  );
-};
+
+class ZeroText extends PureComponent {
+  render() {
+    const { style, ...props } = this.props;
+    const { defaultProps, ...restStyle } = style;
+    return (
+      <Text
+        {...defaultProps}
+        {...props}
+        style={restStyle}
+      />
+    );
+  }
+}
+
 ZeroText.propTypes = {
   style: PropTypes.object,
 };

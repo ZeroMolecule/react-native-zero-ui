@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { Button, TextInput, View } from 'react-native-zero-ui';
+import { Button, Text, TextInput, View } from 'react-native-zero-ui';
 import StyleProvider from '@shoutem/theme/src/StyleProvider';
 
 const style = {
@@ -23,15 +22,21 @@ export default class App extends React.Component {
   render() {
     return (
       <StyleProvider style={style}>
-        <View styleName="flex center padding-horizontal-l padding-vertical">
-          <Text style={styles.spacingVertical} styleName="h5 center">Open up App.js to start working
+        <View animation="bounceIn" styleName="flex center padding-horizontal-l padding-vertical">
+          <Text
+            style={styles.spacingVertical}
+            styleName="h5 center"
+          >
+            Open up App.js to start working
             on your app!
           </Text>
-          <Text styleName="center" style={styles.spacingVertical}>Changes you make will
+          <Text animation="slideInRight" styleName="center" style={styles.spacingVertical}>Changes
+            you make will
             automatically
             reload.
           </Text>
-          <Text styleName="center" style={styles.spacingVertical}>Shake your phone to open the
+          <Text animation="slideInLeft" styleName="center" style={styles.spacingVertical}>Shake your
+            phone to open the
             developer menu.
           </Text>
           <View styleName="fill-width">
@@ -41,6 +46,7 @@ export default class App extends React.Component {
             />
           </View>
           <Button
+            animation="fadeInDown"
             styleName="round fill"
             title="E ne budem!"
             onPress={() => alert('Press')}
