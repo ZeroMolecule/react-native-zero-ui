@@ -8,5 +8,15 @@
         "transform-react-jsx-source"
       ]
     }
-  }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "react-native-zero-ui": ".."
+        }
+      }
+    ]
+  ]
 }

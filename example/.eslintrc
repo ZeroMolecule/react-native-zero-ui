@@ -1,0 +1,12 @@
+{
+  "extends": "../.eslintrc.js",
+  "settings": {
+    "import/core-modules": [
+      "expo",
+      "react-native-zero-ui"
+    ]
+  },
+  "rules": {
+    "react/prop-types": "off"
+  }
+}
