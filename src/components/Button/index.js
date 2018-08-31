@@ -4,6 +4,7 @@ import { StyleSheet, Text, Vibration } from 'react-native';
 import Touchable from '../Touchable';
 import styles from './styles';
 import type { Style } from '../../types';
+import withTheme from '../../styling/Theme/withTheme';
 
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
   hapticDuration?: number,
 }
 
-export default class Button extends PureComponent<Props> {
+class Button extends PureComponent<Props> {
   static defaultProps = {
     titleStyle: null,
     style: null,
@@ -47,3 +48,5 @@ export default class Button extends PureComponent<Props> {
     );
   }
 }
+
+export default withTheme('zero.ui.Button')(Button);

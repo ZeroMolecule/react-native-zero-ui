@@ -5,4 +5,7 @@ module.exports = {
   get Button() {
     return require('./components/Button').default;
   },
+  get Theme() {
+    return require('./styling/Theme').default;
+  }
 };
