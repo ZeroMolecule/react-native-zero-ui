@@ -1,6 +1,15 @@
+// @flow
 import { Platform } from 'react-native';
+import type { Color } from '../types';
 
-function createShadow(x = 0, y = 3, blur = 6, color = '#00000033', alpha = 1, overflow = null) {
+function createShadow(
+  x: number = 0,
+  y: number = 3,
+  blur: number = 6,
+  color: Color = '#00000033',
+  alpha: number = 1,
+  overflow: ?string = null,
+) {
   return Platform.select({
     ios: {
       overflow,
@@ -20,5 +29,5 @@ function createShadow(x = 0, y = 3, blur = 6, color = '#00000033', alpha = 1, ov
 
 export default {
   createShadow,
-  button: createShadow(),
+  button: createShadow(0, 2, 4),
 };
