@@ -15,30 +15,41 @@ type Props = {
   foreground?: any,
   background?: any,
   fallback?: any, // todo set component type
-  useForeground?: boolean,
 };
 
+/**
+ * Select TouchableComponent once on start
+ */
 let TouchableComponent;
-
 if (Platform.OS === 'android') {
-  TouchableComponent =
-    Platform.Version <= 20 ? TouchableOpacity : TouchableNativeFeedback;
+  TouchableComponent = Platform.Version <= 20 ? TouchableOpacity : TouchableNativeFeedback;
 } else {
   TouchableComponent = TouchableOpacity;
 }
-
+let {
+  SelectableBackground,
+  SelectableBackgroundBorderless,
+  Ripple,
+  canUseNativeForeground,
+} = TouchableNativeFeedback;
 if (TouchableComponent !== TouchableNativeFeedback) {
-  TouchableComponent.SelectableBackground = () => ({});
-  TouchableComponent.SelectableBackgroundBorderless = () => ({});
-  TouchableComponent.Ripple = () => ({});
-  TouchableComponent.canUseNativeForeground = () => false;
+  SelectableBackground = () => ({});
+  SelectableBackgroundBorderless = () => ({});
+  Ripple = () => ({});
+  canUseNativeForeground = () => false;
 }
 
 export default class Touchable extends PureComponent<Props> {
-  static SelectableBackground = TouchableComponent.SelectableBackground;
-  static SelectableBackgroundBorderless = TouchableComponent.SelectableBackgroundBorderless;
-  static Ripple = TouchableComponent.Ripple;
-  static canUseNativeForeground = TouchableComponent.canUseNativeForeground;
+  static defaultProps = {
+    style: null,
+    foreground: SelectableBackgroundBorderless(),
+    background: null,
+    fallback: null,
+  };
+  static SelectableBackground = SelectableBackground;
+  static SelectableBackgroundBorderless = SelectableBackgroundBorderless;
+  static Ripple = Ripple;
+  static canUseNativeForeground = canUseNativeForeground;
 
   render() {
     const {
@@ -46,17 +57,16 @@ export default class Touchable extends PureComponent<Props> {
       style,
       foreground,
       background,
-      useForeground,
+      fallback,
       ...props
     } = this.props;
     if (TouchableComponent === TouchableNativeFeedback) {
-      const shouldUseForeground =
-        foreground && TouchableNativeFeedback.canUseNativeForeground();
+      const shouldUseForeground = foreground && TouchableNativeFeedback.canUseNativeForeground();
       if (shouldUseForeground && background) {
         console.warn('Specified foreground and background for Touchable, only one can be used at a time. Defaulted to foreground.');
       }
       return (
-        <TouchableComponent
+        <TouchableNativeFeedback
           {...props}
           useForeground={shouldUseForeground}
           background={(shouldUseForeground && foreground) || background}
@@ -64,9 +74,10 @@ export default class Touchable extends PureComponent<Props> {
           <View style={style}>
             {children}
           </View>
-        </TouchableComponent>
+        </TouchableNativeFeedback>
       );
-    } else if (TouchableComponent === TouchableWithoutFeedback) {
+    }
+    if (TouchableComponent === TouchableWithoutFeedback) {
       return (
         <TouchableWithoutFeedback {...props}>
           <View style={style}>
@@ -75,7 +86,7 @@ export default class Touchable extends PureComponent<Props> {
         </TouchableWithoutFeedback>
       );
     }
-    const TouchableFallback = this.props.fallback || TouchableComponent;
+    const TouchableFallback = fallback || TouchableComponent;
     return (
       <TouchableFallback {...props} style={style}>
         {children}

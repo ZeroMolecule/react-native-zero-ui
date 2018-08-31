@@ -10,5 +10,6 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/jsx-filename-extension': 'off',
     'react/forbid-prop-types': 'off',
+    'lines-between-class-members': 'off',
   },
 };
