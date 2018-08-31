@@ -11,17 +11,19 @@ type Props = {
   title: string,
   titleStyle?: Style,
   style?: Style,
+  hapticDuration?: number,
 }
 
 export default class Button extends PureComponent<Props> {
   static defaultProps = {
     titleStyle: null,
     style: null,
+    hapticDuration: 60,
   };
 
   onPress = () => {
-    const { onPress } = this.props;
-    Vibration.vibrate(60);
+    const { onPress, hapticDuration } = this.props;
+    Vibration.vibrate(hapticDuration);
     onPress();
   };
 

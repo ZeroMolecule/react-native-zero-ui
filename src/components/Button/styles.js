@@ -1,4 +1,6 @@
 // @flow
+import shadow from '../../styling/shadow';
+
 export default {
   button: {
     paddingVertical: 12,
@@ -8,6 +10,7 @@ export default {
     borderRadius: 100,
     backgroundColor: '#42c1ff',
     overflow: 'hidden',
+    ...shadow.button,
   },
   title: {
     fontSize: 16,
