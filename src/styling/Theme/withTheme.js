@@ -2,15 +2,28 @@
 import React, { PureComponent } from 'react';
 import Theme from './index';
 import util from './util';
+import type { Style } from '../../types';
+
+type Props = {
+  className?: ?string,
+  style?: ?Style,
+};
 
 export default (
   key: string,
 ) => (Component: any) => {
-  class HOC extends PureComponent<{}> {
+  class HOC extends PureComponent<Props> {
+    static defaultProps = {
+      className: null,
+      style: null,
+    };
     extractStyles = (source: Object) => {
-      const variants = this.props.className.split(' ') || [];
-      console.log('variants', variants);
-      return util.extractStyles(source, variants, this.props.style);
+      const { className, style } = this.props;
+      let variants = [];
+      if (className) {
+        variants = className.split(' ');
+      }
+      return util.extractStyles(source, variants, style);
     };
 
     fillProps = (theme: Object) => {
@@ -20,7 +33,6 @@ export default (
         if (componentTheme) {
           const purified = util.purifyTheme(componentTheme);
           const extracted = this.extractStyles(purified);
-          console.log({ extracted });
           return extracted;
         }
       }
