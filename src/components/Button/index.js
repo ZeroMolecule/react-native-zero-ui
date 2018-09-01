@@ -19,12 +19,14 @@ class Button extends PureComponent<Props> {
   static defaultProps = {
     titleStyle: null,
     style: null,
-    hapticDuration: 60,
+    hapticDuration: 0,
   };
 
   onPress = () => {
     const { onPress, hapticDuration } = this.props;
-    Vibration.vibrate(hapticDuration);
+    if (hapticDuration) {
+      Vibration.vibrate(hapticDuration);
+    }
     onPress();
   };
 
@@ -49,4 +51,4 @@ class Button extends PureComponent<Props> {
   }
 }
 
-export default withTheme('zero.ui.Button')(Button);
+export default withTheme('#Button')(Button);

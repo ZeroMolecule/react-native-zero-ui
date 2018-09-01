@@ -3,19 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button, Theme } from 'react-native-zero-ui';
 
 const theme = {
-  '.zero.ui.Button': {
-    '#titleStyle': { color: 'yellow' },
-    '.primary': {
-      backgroundColor: 'cyan',
-      borderRadius: 4,
-      '#titleStyle': {
-        fontSize: 20,
-      },
-    },
-    '.secondary': {
-      backgroundColor: 'transparent',
-      '#titleStyle': { color: 'red' },
-    },
+  '#Button': {
+    _titleStyle: { color: 'yellow' },
+    backgroundColor: 'red',
   },
 };
 
@@ -26,7 +16,16 @@ export default class App extends React.Component {
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
           <Button
-            className="primary"
+            onPress={() => null}
+            title="Đe si"
+          />
+          <Button
+            style={{
+              margin: 24,
+              width: '90%',
+              backgroundColor: 'magenta',
+              borderRadius: 2,
+            }}
             onPress={() => null}
             title="Đe si"
           />

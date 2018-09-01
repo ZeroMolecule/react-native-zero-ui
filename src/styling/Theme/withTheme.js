@@ -1,12 +1,13 @@
 // @flow
 import React, { PureComponent } from 'react';
 import Theme from './index';
-import util from './util';
 import type { Style } from '../../types';
+import data from './data';
 
 type Props = {
   className?: ?string,
   style?: ?Style,
+  forwardedRef?: ?any,
 };
 
 export default (
@@ -16,39 +17,33 @@ export default (
     static defaultProps = {
       className: null,
       style: null,
-    };
-    extractStyles = (source: Object) => {
-      const { className, style } = this.props;
-      let variants = [];
-      if (className) {
-        variants = className.split(' ');
-      }
-      return util.extractStyles(source, variants, style);
+      forwardedRef: null,
     };
 
-    fillProps = (theme: Object) => {
-      const componentThemeKey = `.${key}`;
-      if (theme) {
-        const componentTheme = theme[componentThemeKey];
-        if (componentTheme) {
-          const purified = util.purifyTheme(componentTheme);
-          const extracted = this.extractStyles(purified);
-          return extracted;
-        }
-      }
-      return {};
+    mapToProps = (theme: Object) => {
+      console.log('Theme: ', theme);
+      const componentTheme = data.getComponentTheme(key, theme);
+      console.log('Component theme', componentTheme);
+      const themeStyles = data.getStyles(componentTheme);
+      console.log('Theme styles', themeStyles);
+      const merged = data.mergeStyles(themeStyles, this.props);
+      console.log('Merged: ', merged);
+      return merged;
     };
 
     render() {
       const {
         style,
+        // $FlowFixMe todo: Update when Flow type definition updates
+        forwardedRef,
         ...props
       } = this.props;
       return (
         <Theme.Consumer>
           {theme => (
             <Component
-              {...this.fillProps(theme)}
+              ref={forwardedRef}
+              {...this.mapToProps(theme)}
               {...props}
             />
           )}
@@ -57,5 +52,8 @@ export default (
     }
   }
 
-  return HOC;
+  // $FlowFixMe todo: Update when Flow type definition updates
+  return React.forwardRef((props, ref) => (
+    <HOC {...props} forwardedRef={ref} />
+  ));
 };
