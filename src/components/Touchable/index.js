@@ -2,37 +2,40 @@
 import React, { PureComponent } from 'react';
 import {
   Platform,
+  TouchableHighlight,
   TouchableNativeFeedback,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Vibration,
   View,
 } from 'react-native';
 import type { SingleChild, Style } from '../../types';
 
 type Props = {
   children: SingleChild,
+  onPress?: () => void,
   style?: ?Style,
   foreground?: any,
   background?: any,
   fallback?: any, // todo set component type
+  hapticDuration?: number,
+  mode?: 'native' | 'opacity' | 'highlight' | 'none',
 };
 
 /**
- * Select TouchableComponent once on start
+ * Select default native component once on start
  */
-let TouchableComponent;
-if (Platform.OS === 'android') {
-  TouchableComponent = Platform.Version <= 20 ? TouchableOpacity : TouchableNativeFeedback;
-} else {
-  TouchableComponent = TouchableOpacity;
-}
+const TouchableNative = Platform.select({
+  android: Platform.Version <= 20 ? TouchableOpacity : TouchableNativeFeedback,
+  ios: TouchableOpacity,
+});
 let {
   SelectableBackground,
   SelectableBackgroundBorderless,
   Ripple,
   canUseNativeForeground,
 } = TouchableNativeFeedback;
-if (TouchableComponent !== TouchableNativeFeedback) {
+if (TouchableNative !== TouchableNativeFeedback) {
   SelectableBackground = () => ({});
   SelectableBackgroundBorderless = () => ({});
   Ripple = () => ({});
@@ -45,11 +48,36 @@ export default class Touchable extends PureComponent<Props> {
     foreground: SelectableBackgroundBorderless(),
     background: null,
     fallback: null,
+    hapticDuration: 0,
+    onPress: undefined,
+    mode: 'native',
   };
   static SelectableBackground = SelectableBackground;
   static SelectableBackgroundBorderless = SelectableBackgroundBorderless;
   static Ripple = Ripple;
   static canUseNativeForeground = canUseNativeForeground;
+
+  onPress = () => {
+    const { onPress, hapticDuration } = this.props;
+    if (hapticDuration) {
+      Vibration.vibrate(hapticDuration);
+    }
+    return onPress;
+  };
+
+  pickTouchableComponent() {
+    const { mode } = this.props;
+    switch (mode) {
+      case 'native':
+        return TouchableNative;
+      case 'highlight':
+        return TouchableHighlight;
+      case 'opacity':
+        return TouchableOpacity;
+      default:
+        return TouchableWithoutFeedback;
+    }
+  }
 
   render() {
     const {
@@ -58,16 +86,18 @@ export default class Touchable extends PureComponent<Props> {
       foreground,
       background,
       fallback,
+      onPress,
+      hapticDuration,
+      mode,
       ...props
     } = this.props;
+    const TouchableComponent = this.pickTouchableComponent();
     if (TouchableComponent === TouchableNativeFeedback) {
       const shouldUseForeground = foreground && TouchableNativeFeedback.canUseNativeForeground();
-      if (shouldUseForeground && background) {
-        console.warn('Specified foreground and background for Touchable, only one can be used at a time. Defaulted to foreground.');
-      }
       return (
         <TouchableNativeFeedback
           {...props}
+          onPress={this.onPress}
           useForeground={shouldUseForeground}
           background={(shouldUseForeground && foreground) || background}
         >
@@ -79,7 +109,7 @@ export default class Touchable extends PureComponent<Props> {
     }
     if (TouchableComponent === TouchableWithoutFeedback) {
       return (
-        <TouchableWithoutFeedback {...props}>
+        <TouchableWithoutFeedback {...props} onPress={this.onPress}>
           <View style={style}>
             {children}
           </View>
@@ -88,7 +118,8 @@ export default class Touchable extends PureComponent<Props> {
     }
     const TouchableFallback = fallback || TouchableComponent;
     return (
-      <TouchableFallback {...props} style={style}>
+      // $FlowFixMe todo: Update when Flow type definition updates
+      <TouchableFallback {...props} style={style} onPress={this.onPress}>
         {children}
       </TouchableFallback>
     );

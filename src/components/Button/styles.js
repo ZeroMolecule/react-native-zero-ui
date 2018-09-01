@@ -1,13 +1,14 @@
 // @flow
+import { StyleSheet } from 'react-native';
 import shadow from '../../styling/shadow';
 
-export default {
+export default StyleSheet.create({
   button: {
     paddingVertical: 12,
     paddingHorizontal: 24,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 100,
+    borderRadius: 4,
     backgroundColor: '#42c1ff',
     overflow: 'hidden',
     ...shadow.button,
@@ -16,4 +17,4 @@ export default {
     fontSize: 16,
     color: '#fff',
   },
-};
+});

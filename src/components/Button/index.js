@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { StyleSheet, Text, Vibration } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import Touchable from '../Touchable';
 import styles from './styles';
 import type { Style } from '../../types';
@@ -8,11 +8,11 @@ import withTheme from '../../styling/Theme/withTheme';
 
 
 type Props = {
-  onPress: () => void,
   title: string,
+  onPress: () => void,
   titleStyle?: Style,
   style?: Style,
-  hapticDuration?: number,
+  children?: null,
 }
 
 class Button extends PureComponent<Props> {
@@ -20,14 +20,7 @@ class Button extends PureComponent<Props> {
     titleStyle: null,
     style: null,
     hapticDuration: 0,
-  };
-
-  onPress = () => {
-    const { onPress, hapticDuration } = this.props;
-    if (hapticDuration) {
-      Vibration.vibrate(hapticDuration);
-    }
-    onPress();
+    children: null,
   };
 
   render() {
@@ -35,15 +28,17 @@ class Button extends PureComponent<Props> {
       title,
       titleStyle,
       style,
+      onPress,
+      children,
       ...props
     } = this.props;
     return (
       <Touchable
         {...props}
-        onPress={this.onPress}
+        onPress={onPress}
         style={StyleSheet.flatten([styles.button, style])}
       >
-        <Text style={StyleSheet.flatten([styles.title, titleStyle])}>
+        <Text {...props} style={StyleSheet.flatten([styles.title, titleStyle])}>
           {title}
         </Text>
       </Touchable>

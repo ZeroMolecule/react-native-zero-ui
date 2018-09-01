@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button, Theme } from 'react-native-zero-ui';
+import ImageButton from '../src/components/ImageButton';
 
 const theme = {
   '#Button': {
@@ -8,6 +9,8 @@ const theme = {
     backgroundColor: 'red',
   },
 };
+
+const icon = { uri: 'https://image.flaticon.com/icons/png/128/126/126471.png' };
 
 export default class App extends React.Component {
   render() {
@@ -20,6 +23,7 @@ export default class App extends React.Component {
             title="Đe si"
           />
           <Button
+            mode="highlight"
             style={{
               margin: 24,
               width: '90%',
@@ -29,6 +33,17 @@ export default class App extends React.Component {
             onPress={() => null}
             title="Đe si"
           />
+          <View style={{
+            width: '70%',
+            height: 200,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <ImageButton
+              onPress={() => alert('kifla')}
+              source={icon}
+            />
+          </View>
         </View>
       </Theme.Provider>
     );
@@ -38,7 +53,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#afa',
     alignItems: 'center',
     justifyContent: 'center',
   },
