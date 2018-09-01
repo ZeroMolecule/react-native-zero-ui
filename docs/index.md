@@ -1,8 +1,9 @@
 ## Get Started
 
 ### Installation
+**Note:** Version 0.5 brought major changes so please make sure you've read and understood the documentation before proceeding with updating the old one
 
-- If you want just the components, you need to add the plugin using 
+If you want just the components, you need to add the plugin using 
 
   ```bash
   npm install react-native-zero-ui --save
@@ -13,51 +14,35 @@
   ```bash
   yarn add react-native-zero-ui
   ```
+<br />
+<br />
 
-  ​
+### Theme support 
+Latest version of React Native Zero UI has simplified, standalone and [Context API](https://reactjs.org/docs/context.html) supported theming for your components.
 
-- If you require to use full potential of the plugin, you need to add [@shoutem/theme](https://github.com/shoutem/theme) plugin as well. You can do it by typing 
+We've decided to remove `styleName` way of styling components because it is not really "react native like". However, providing default styles for any of the components is enabled. You can even add custom named styling properties such as `titleStyle` in `<Button />` by prefixing it's key with `_` symbol within the theme. For example:
 
-  ```bash
-  npm install @shoutem/theme --save
+```ecmascript 6
+const theme = {
+  '#Button': {
+    _titleStyle: { color: 'white' },
+    backgroundColor: 'cyan',
+  },
+};
   ```
 
-  or
-
-  ```bash
-  yarn add @shoutem/theme
-  ```
-
-  ​
-
-### Usage
-
-Start using the components or try it on Snack [here](https://snack.expo.io/rJu6gJfBZ).
-
-```js
-import { Button } from 'react-native-elements';
-
-<Button
-  raised
-  icon={{name: 'home', size: 32}}
-  buttonStyle={{backgroundColor: 'red', borderRadius: 10}}
-  textStyle={{textAlign: 'center'}}
-  title={`Welcome to\nReact Native Elements`}
-/>
-```
+<br />
+<br />
 
 ## Components Included
 
 - [x] [Button](https://zeromolecule.github.io/react-native-zero-ui/button)
-- [x] [Text](https://zeromolecule.github.io/react-native-zero-ui/text)
-- [x] [View](https://zeromolecule.github.io/react-native-zero-ui/view)
-- [x] [TextInput](https://zeromolecule.github.io/react-native-zero-ui/textInput)
-- [ ] [ScrollView](https://zeromolecule.github.io/react-native-zero-ui/scrollView)
-- [ ] [Image](https://zeromolecule.github.io/react-native-zero-ui/image)
-- [ ] [Checkbox](https://zeromolecule.github.io/react-native-zero-ui/checkbox)
-- [ ] [Icon](https://zeromolecule.github.io/react-native-zero-ui/icon)
-- [ ] [Rating](https://zeromolecule.github.io/react-native-zero-ui/rating)
-- [ ] [Slider](https://zeromolecule.github.io/react-native-zero-ui/slider)
+- [x] [ImageButton](https://zeromolecule.github.io/react-native-zero-ui/imageButton)
+- [x] [Touchable](https://zeromolecule.github.io/react-native-zero-ui/touchable)
+
+## Theme elements
+- [x] [Theme](https://zeromolecule.github.io/react-native-zero-ui/theme)
+- [x] [withTheme](https://zeromolecule.github.io/react-native-zero-ui/withTheme)
 
 ## Documentation
 
