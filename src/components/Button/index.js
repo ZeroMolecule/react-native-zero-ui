@@ -19,7 +19,6 @@ class Button extends PureComponent<Props> {
   static defaultProps = {
     titleStyle: null,
     style: null,
-    hapticDuration: 0,
     children: null,
   };
 
