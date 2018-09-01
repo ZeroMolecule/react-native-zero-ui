@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
+import hoistStatics from 'hoist-non-react-statics';
 import Theme from './index';
 import type { Style } from '../../types';
 import data from './data';
@@ -52,8 +53,9 @@ export default (
     }
   }
 
+  const HOCWithStatistics = hoistStatics(HOC, Component);
   // $FlowFixMe todo: Update when Flow type definition updates
   return React.forwardRef((props, ref) => (
-    <HOC {...props} forwardedRef={ref} />
+    <HOCWithStatistics {...props} forwardedRef={ref} />
   ));
 };
