@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button, Theme } from 'react-native-zero-ui';
-import ImageButton from '../src/components/ImageButton';
+import { Button, ImageButton, Theme } from 'react-native-zero-ui';
 
 const theme = {
   '#Button': {
