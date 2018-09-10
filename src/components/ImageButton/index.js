@@ -4,7 +4,6 @@ import { Image, StyleSheet } from 'react-native';
 import styles from './styles';
 import Touchable from '../Touchable';
 import type { Style } from '../../types';
-import withTheme from '../../styling/Theme/withTheme';
 
 type Props = {
   onPress: () => void,
@@ -38,4 +37,4 @@ class ImageButton extends PureComponent<Props> {
   }
 }
 
-export default withTheme('#ImageButton')(ImageButton);
+export default ImageButton;

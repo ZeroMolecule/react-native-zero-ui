@@ -4,7 +4,6 @@ import { StyleSheet, Text } from 'react-native';
 import Touchable from '../Touchable';
 import styles from './styles';
 import type { Children, Style } from '../../types';
-import withTheme from '../../styling/Theme/withTheme';
 
 
 type Props = {
@@ -53,4 +52,4 @@ class Button extends PureComponent<Props> {
   }
 }
 
-export default withTheme('#Button')(Button);
+export default Button;

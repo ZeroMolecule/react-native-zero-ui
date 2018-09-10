@@ -27,8 +27,9 @@ export default class App extends React.Component {
               margin: 24,
               width: '90%',
               backgroundColor: 'magenta',
-              borderRadius: 2,
+              borderRadius: 10,
             }}
+            underlayColor="yellow"
             onPress={() => null}
             title="Đe si"
           />
