@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import Touchable from '../Touchable';
 import styles from './styles';
-import type { Style } from '../../types';
+import type { Children, Style } from '../../types';
 import withTheme from '../../styling/Theme/withTheme';
 
 
@@ -13,6 +13,8 @@ type Props = {
   titleStyle?: Style,
   style?: Style,
   children?: null,
+  left?: Children,
+  right?: Children,
 }
 
 class Button extends PureComponent<Props> {
@@ -20,6 +22,8 @@ class Button extends PureComponent<Props> {
     titleStyle: null,
     style: null,
     children: null,
+    left: null,
+    right: null,
   };
 
   render() {
@@ -29,6 +33,8 @@ class Button extends PureComponent<Props> {
       style,
       onPress,
       children,
+      left,
+      right,
       ...props
     } = this.props;
     return (
@@ -37,9 +43,11 @@ class Button extends PureComponent<Props> {
         onPress={onPress}
         style={StyleSheet.flatten([styles.button, style])}
       >
+        {left}
         <Text {...props} style={StyleSheet.flatten([styles.title, titleStyle])}>
           {title}
         </Text>
+        {right}
       </Touchable>
     );
   }

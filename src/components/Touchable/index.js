@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import {
   Platform,
   TouchableHighlight,
@@ -9,10 +9,10 @@ import {
   Vibration,
   View,
 } from 'react-native';
-import type { SingleChild, Style } from '../../types';
+import type { Children, Style } from '../../types';
 
 type Props = {
-  children: SingleChild,
+  children: Children,
   onPress?: () => void,
   style?: ?Style,
   foreground?: any,
@@ -120,7 +120,9 @@ export default class Touchable extends PureComponent<Props> {
     return (
       // $FlowFixMe todo: Update when Flow type definition updates
       <TouchableFallback {...props} style={style} onPress={this.onPress}>
-        {children}
+        <Fragment>
+          {children}
+        </Fragment>
       </TouchableFallback>
     );
   }
