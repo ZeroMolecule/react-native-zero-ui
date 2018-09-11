@@ -13,5 +13,8 @@ module.exports = {
   },
   get Theme() {
     return require('./styling/Theme').default;
-  }
+  },
+  get Shadow() {
+    return require('./styling/Shadow').default;
+  },
 };

@@ -1,25 +1,31 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button, ImageButton, Theme } from 'react-native-zero-ui';
+import { Button, ImageButton, Theme, withTheme, } from 'react-native-zero-ui';
+import appTheme from './appTheme';
 
-const theme = {
-  '#Button': {
-    _titleStyle: { color: 'yellow' },
-    backgroundColor: 'red',
-  },
-};
+const ThemedButton = withTheme('.button')(Button);
 
 const icon = { uri: 'https://image.flaticon.com/icons/png/128/126/126471.png' };
 
 export default class App extends React.Component {
   render() {
     return (
-      <Theme.Provider value={theme}>
+      <Theme.Provider value={appTheme}>
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
-          <Button
+          <ThemedButton
             onPress={() => null}
             title="Đe si"
+            styleName="primary"
+          />
+          <ThemedButton
+            onPress={() => null}
+            title="Tu sam"
+            styleName="primary"
+            style={{
+              borderRadius: 100,
+              marginTop: 50
+            }}
           />
           <Button
             mode="highlight"
@@ -29,7 +35,6 @@ export default class App extends React.Component {
               backgroundColor: 'magenta',
               borderRadius: 10,
             }}
-            underlayColor="yellow"
             onPress={() => null}
             title="Đe si"
           />
@@ -38,7 +43,8 @@ export default class App extends React.Component {
             height: 200,
             justifyContent: 'center',
             alignItems: 'center',
-          }}>
+          }}
+          >
             <ImageButton
               onPress={() => alert('kifla')}
               source={icon}

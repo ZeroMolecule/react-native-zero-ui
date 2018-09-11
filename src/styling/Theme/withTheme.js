@@ -3,12 +3,13 @@ import React, { PureComponent } from 'react';
 import hoistStatics from 'hoist-non-react-statics';
 import Theme from './index';
 import type { Style } from '../../types';
-import data from './data';
+import util from './util';
 
 type Props = {
   className?: ?string,
   style?: ?Style,
   forwardedRef?: ?any,
+  styleName?: string,
 };
 
 export default (
@@ -19,17 +20,17 @@ export default (
       className: null,
       style: null,
       forwardedRef: null,
+      styleName: '',
     };
 
     mapToProps = (theme: Object) => {
-      console.log('Theme: ', theme);
-      const componentTheme = data.getComponentTheme(key, theme);
-      console.log('Component theme', componentTheme);
-      const themeStyles = data.getStyles(componentTheme);
-      console.log('Theme styles', themeStyles);
-      const merged = data.mergeStyles(themeStyles, this.props);
-      console.log('Merged: ', merged);
-      return merged;
+      const { styleName, ...props } = this.props;
+      const componentTheme = util.getComponentTheme(key, theme);
+      let classNames = [];
+      if (styleName) {
+        classNames = util.getClassNames(styleName);
+      }
+      return util.mergeAllStyles(componentTheme, classNames, props);
     };
 
     render() {
@@ -37,6 +38,7 @@ export default (
         style,
         // $FlowFixMe todo: Update when Flow type definition updates
         forwardedRef,
+        styleName,
         ...props
       } = this.props;
       return (
