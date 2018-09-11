@@ -8,13 +8,7 @@ module.exports = {
   get ImageButton() {
     return require('./components/ImageButton').default;
   },
-  get withTheme() {
-    return require('./styling/Theme/withTheme').default;
-  },
-  get Theme() {
-    return require('./styling/Theme').default;
-  },
-  get Shadow() {
-    return require('./styling/Shadow').default;
+  get ShadowStyle() {
+    return require('./styling/ShadowStyle').default;
   },
 };

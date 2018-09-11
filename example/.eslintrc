@@ -3,7 +3,7 @@
   "settings": {
     "import/core-modules": [
       "expo",
-      "react-native-zero-ui"
+      "react-native-zero-components"
     ]
   },
   "rules": {

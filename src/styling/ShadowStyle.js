@@ -2,7 +2,7 @@
 import { Platform } from 'react-native';
 import type { Color } from '../types';
 
-export default class Shadow {
+export default class ShadowStyle {
   +x: number;
   +y: number;
   +blur: number;

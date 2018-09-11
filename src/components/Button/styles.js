@@ -1,8 +1,8 @@
 // @flow
 import { StyleSheet } from 'react-native';
-import Shadow from '../../styling/Shadow';
+import ShadowStyle from '../../styling/ShadowStyle';
 
-const buttonShadow = new Shadow(0, 2, 6);
+const buttonShadow = new ShadowStyle(0, 2, 6);
 
 export default StyleSheet.create({
   button: {
@@ -20,5 +20,6 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#fff',
     textAlign: 'center',
+    marginHorizontal: 6,
   },
 });
