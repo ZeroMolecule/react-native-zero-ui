@@ -1,3 +1,6 @@
+# DEPRECATED
+This project is now officialy deprecated. We've separated it into multiple different modules:
+* [zero-components](https://github.com/ZeroMolecule/zero-components)
 ## Get Started
 
 ### Installation
